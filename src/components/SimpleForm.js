@@ -42,7 +42,7 @@ const SimpleForm = () => {
     validate,
   });
 
-  console.log('Form errors', formik.errors);
+  console.log('Visited fields', formik.touched);
   return (
     <form onSubmit={formik.handleSubmit}>
       {/* // TODO: Name Field and validation using Formik */}
@@ -53,9 +53,12 @@ const SimpleForm = () => {
           id="name"
           name="name"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           value={formik.values.name}
         />
-        {formik.errors.name ? <div className="error">{formik.errors.name}</div> : null}
+        {formik.touched.name && formik.errors.name ? (
+          <div className="error">{formik.errors.name}</div>
+        ) : null}
       </div>
 
       {/* // TODO: E-mail Field and validation using Formik */}
@@ -66,9 +69,12 @@ const SimpleForm = () => {
           id="email"
           name="email"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           value={formik.values.email}
         />
-        {formik.errors.email ? <div className="error">{formik.errors.email}</div> : null}
+        {formik.touched.email && formik.errors.email ? (
+          <div className="error">{formik.errors.email}</div>
+        ) : null}
       </div>
 
       {/* // TODO: Channel Field and validation using Formik */}
@@ -79,9 +85,12 @@ const SimpleForm = () => {
           id="channel"
           name="channel"
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           value={formik.values.channel}
         />
-        {formik.errors.channel ? <div className="error">{formik.errors.channel}</div> : null}
+        {formik.touched.channel && formik.errors.channel ? (
+          <div className="error">{formik.errors.channel}</div>
+        ) : null}
       </div>
 
       <button type="submit">Submit</button>
