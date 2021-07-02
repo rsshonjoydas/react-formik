@@ -1,6 +1,6 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useFormik } from 'formik';
 import React from 'react';
+import * as Yup from 'yup';
 
 // * initial values of input field
 const initialValues = {
@@ -14,32 +14,18 @@ const onSubmit = (values) => {
   console.log('Form data', values);
 };
 
-// * input form validation function
-const validate = (values) => {
-  const errors = {};
-
-  if (!values.name) {
-    errors.name = 'Required';
-  }
-
-  if (!values.email) {
-    errors.email = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email format';
-  }
-
-  if (!values.channel) {
-    errors.channel = 'Required';
-  }
-
-  return errors;
-};
+// * input form validation schema
+const validationSchema = Yup.object({
+  name: Yup.string().required('Required'),
+  email: Yup.string().email('Invalid email format').required('Required'),
+  channel: Yup.string().required('Required'),
+});
 
 const SimpleForm = () => {
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validate,
+    validationSchema,
   });
 
   console.log('Visited fields', formik.touched);
@@ -48,14 +34,7 @@ const SimpleForm = () => {
       {/* // TODO: Name Field and validation using Formik */}
       <div className="formControl">
         <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.name}
-        />
+        <input type="text" id="name" name="name" {...formik.getFieldProps('name')} />
         {formik.touched.name && formik.errors.name ? (
           <div className="error">{formik.errors.name}</div>
         ) : null}
@@ -64,14 +43,7 @@ const SimpleForm = () => {
       {/* // TODO: E-mail Field and validation using Formik */}
       <div className="formControl">
         <label>E-mail</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.email}
-        />
+        <input type="email" id="email" name="email" {...formik.getFieldProps('email')} />
         {formik.touched.email && formik.errors.email ? (
           <div className="error">{formik.errors.email}</div>
         ) : null}
@@ -80,14 +52,7 @@ const SimpleForm = () => {
       {/* // TODO: Channel Field and validation using Formik */}
       <div className="formControl">
         <label htmlFor="channel">Channel</label>
-        <input
-          type="text"
-          id="channel"
-          name="channel"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.channel}
-        />
+        <input type="text" id="channel" name="channel" {...formik.getFieldProps('channel')} />
         {formik.touched.channel && formik.errors.channel ? (
           <div className="error">{formik.errors.channel}</div>
         ) : null}
