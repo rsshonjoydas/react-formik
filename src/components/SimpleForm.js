@@ -1,4 +1,4 @@
-import { useFormik } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 
@@ -21,45 +21,32 @@ const validationSchema = Yup.object({
   channel: Yup.string().required('Required'),
 });
 
-const SimpleForm = () => {
-  const formik = useFormik({
-    initialValues,
-    onSubmit,
-    validationSchema,
-  });
-
-  console.log('Visited fields', formik.touched);
-  return (
-    <form onSubmit={formik.handleSubmit}>
+const SimpleForm = () => (
+  <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+    <Form>
       {/* // TODO: Name Field and validation using Formik */}
       <div className="formControl">
         <label htmlFor="name">Name</label>
-        <input type="text" id="name" name="name" {...formik.getFieldProps('name')} />
-        {formik.touched.name && formik.errors.name ? (
-          <div className="error">{formik.errors.name}</div>
-        ) : null}
+        <Field type="text" id="name" name="name" />
+        <ErrorMessage name="name" />
       </div>
 
       {/* // TODO: E-mail Field and validation using Formik */}
       <div className="formControl">
         <label>E-mail</label>
-        <input type="email" id="email" name="email" {...formik.getFieldProps('email')} />
-        {formik.touched.email && formik.errors.email ? (
-          <div className="error">{formik.errors.email}</div>
-        ) : null}
+        <Field type="email" id="email" name="email" />
+        <ErrorMessage name="email" />
       </div>
 
       {/* // TODO: Channel Field and validation using Formik */}
       <div className="formControl">
         <label htmlFor="channel">Channel</label>
-        <input type="text" id="channel" name="channel" {...formik.getFieldProps('channel')} />
-        {formik.touched.channel && formik.errors.channel ? (
-          <div className="error">{formik.errors.channel}</div>
-        ) : null}
+        <Field type="text" id="channel" name="channel" placeholder="YouTube channel name" />
+        <ErrorMessage name="channel" />
       </div>
 
       <button type="submit">Submit</button>
-    </form>
-  );
-};
+    </Form>
+  </Formik>
+);
 export default SimpleForm;
