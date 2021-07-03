@@ -8,6 +8,7 @@ const initialValues = {
   email: '',
   channel: '',
   comments: '',
+  address: '',
 };
 
 // * onsubmit button handler
@@ -50,6 +51,23 @@ const SimpleForm = () => (
       <div className="formControl">
         <label htmlFor="comments">Comments</label>
         <Field as="textarea" id="comments" name="comments" />
+      </div>
+
+      {/* //TODO: Address Field using Formik */}
+      <div className="formControl">
+        <label htmlFor="address">Address</label>
+        <Field name="address">
+          {(props) => {
+            const { field, meta } = props;
+            console.log('Render props', props);
+            return (
+              <div>
+                <input type="text" id="address" {...field} />
+                {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+              </div>
+            );
+          }}
+        </Field>
       </div>
 
       <button type="submit">Submit</button>
