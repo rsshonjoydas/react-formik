@@ -7,6 +7,7 @@ const initialValues = {
   name: 'RS Shonjoy',
   email: '',
   channel: '',
+  comments: '',
 };
 
 // * onsubmit button handler
@@ -43,6 +44,12 @@ const SimpleForm = () => (
         <label htmlFor="channel">Channel</label>
         <Field type="text" id="channel" name="channel" placeholder="YouTube channel name" />
         <ErrorMessage name="channel" />
+      </div>
+
+      {/* //TODO: Comments Field using Formik */}
+      <div className="formControl">
+        <label htmlFor="comments">Comments</label>
+        <Field as="textarea" id="comments" name="comments" />
       </div>
 
       <button type="submit">Submit</button>
