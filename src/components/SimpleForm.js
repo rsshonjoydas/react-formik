@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
+import TextError from './TextError';
 
 // * initial values of input field
 const initialValues = {
@@ -30,21 +31,25 @@ const SimpleForm = () => (
       <div className="formControl">
         <label htmlFor="name">Name</label>
         <Field type="text" id="name" name="name" />
-        <ErrorMessage name="name" />
+        {/* // * ErrorMessage use props method */}
+        <ErrorMessage name="name" component={TextError} />
       </div>
 
       {/* // TODO: E-mail Field and validation using Formik */}
       <div className="formControl">
         <label>E-mail</label>
         <Field type="email" id="email" name="email" />
-        <ErrorMessage name="email" />
+        <ErrorMessage name="email">
+          {/* // * ErrorMessage use Render props method */}
+          {(errorMsg) => <div className="error">{errorMsg}</div>}
+        </ErrorMessage>
       </div>
 
       {/* // TODO: Channel Field and validation using Formik */}
       <div className="formControl">
         <label htmlFor="channel">Channel</label>
         <Field type="text" id="channel" name="channel" placeholder="YouTube channel name" />
-        <ErrorMessage name="channel" />
+        <ErrorMessage name="channel" component={TextError} />
       </div>
 
       {/* //TODO: Comments Field using Formik */}
