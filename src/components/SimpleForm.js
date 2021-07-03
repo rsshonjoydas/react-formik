@@ -10,6 +10,10 @@ const initialValues = {
   channel: '',
   comments: '',
   address: '',
+  social: {
+    facebook: '',
+    twitter: '',
+  },
 };
 
 // * onsubmit button handler
@@ -73,6 +77,16 @@ const SimpleForm = () => (
             );
           }}
         </Field>
+      </div>
+
+      {/* //TODO: Social Field using Formik */}
+      <div className="formControl">
+        <label htmlFor="facebook">Facebook profile</label>
+        <Field type="text" id="facebook" name="social.facebook" />
+      </div>
+      <div className="formControl">
+        <label htmlFor="twitter">Twitter profile</label>
+        <Field type="text" id="twitter" name="social.twitter" />
       </div>
 
       <button type="submit">Submit</button>
