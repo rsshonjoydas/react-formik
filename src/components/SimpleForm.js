@@ -14,6 +14,7 @@ const initialValues = {
     facebook: '',
     twitter: '',
   },
+  phoneNumbers: ['', ''],
 };
 
 // * onsubmit button handler
@@ -87,6 +88,16 @@ const SimpleForm = () => (
       <div className="formControl">
         <label htmlFor="twitter">Twitter profile</label>
         <Field type="text" id="twitter" name="social.twitter" />
+      </div>
+
+      {/* //TODO: Phone Number Field using Formik */}
+      <div className="formControl">
+        <label htmlFor="primaryPh">Primary phone number</label>
+        <Field type="text" id="primaryPh" name="phoneNumbers[0]" />
+      </div>
+      <div className="formControl">
+        <label htmlFor="secondaryPh">Secondary phone number</label>
+        <Field type="text" id="secondaryPh" name="phoneNumbers[1]" />
       </div>
 
       <button type="submit">Submit</button>
