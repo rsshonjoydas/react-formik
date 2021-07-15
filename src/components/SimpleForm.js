@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, FieldArray, Form, Formik } from 'formik';
+import { ErrorMessage, FastField, Field, FieldArray, Form, Formik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 import TextError from './TextError';
@@ -67,10 +67,10 @@ const SimpleForm = () => (
       {/* //TODO: Address Field using Formik */}
       <div className="formControl">
         <label htmlFor="address">Address</label>
-        <Field name="address">
+        <FastField name="address">
           {(props) => {
+            console.log('Field render');
             const { field, meta } = props;
-            console.log('Render props', props);
             return (
               <div>
                 <input type="text" id="address" {...field} />
@@ -78,7 +78,7 @@ const SimpleForm = () => (
               </div>
             );
           }}
-        </Field>
+        </FastField>
       </div>
 
       {/* //TODO: Social Field using Formik */}
@@ -106,7 +106,6 @@ const SimpleForm = () => (
         <label>List of phone numbers</label>
         <FieldArray name="phNumbers">
           {(fieldArrayProps) => {
-            console.log('fieldArrayProps', fieldArrayProps);
             const { push, remove, form } = fieldArrayProps;
             const { values } = form;
             const { phNumbers } = values;
