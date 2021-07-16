@@ -1,10 +1,10 @@
 import './App.css';
-import SimpleForm from './components/SimpleForm';
+import FormikContainer from './components/FormikControl/FormikContainer';
 
 function App() {
   return (
     <div className="App">
-      <SimpleForm />
+      <FormikContainer />
     </div>
   );
 }
