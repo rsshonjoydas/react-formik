@@ -34,8 +34,10 @@ const savedValues = {
 };
 
 // * onsubmit button handler
-const onSubmit = (values) => {
+const onSubmit = (values, onSubmitProps) => {
   console.log('Form data', values);
+  onSubmitProps.setSubmitting(false);
+  onSubmitProps.resetForm();
 };
 
 // * input form validation schema
@@ -169,6 +171,7 @@ const SimpleForm = () => {
               </FieldArray>
             </div>
 
+            <button type="reset">Reset</button>
             <button type="button" onClick={() => setFormValues(savedValues)}>
               Load save data
             </button>
